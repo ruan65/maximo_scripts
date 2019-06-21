@@ -12,7 +12,8 @@ valSet.setWhere('WONUM='+val)
 wo = valSet.getMbo(0)
 wo.changeStatus(u'В РАБОТЕ', MXServer.getMXServer().getDate(), u'Принято в работу',4L)
 rltkt = wo.getMboSet('RELATEDTICKET').getMbo(0)
-sr = rltkt.getMboSet('RELATEDRECTK').getMbo(0)
-if sr != None:
- sr.changeStatus(u'В РЕМОНТЕ', MXServer.getMXServer().getDate(), u'Принято в работу',4L)
+if rltkt != None:
+ sr = rltkt.getMboSet('RELATEDRECTK').getMbo(0)
+ if sr != None:
+  sr.changeStatus(u'В РЕМОНТЕ', MXServer.getMXServer().getDate(), u'Принято в работу',4L)
 valSet.save()
